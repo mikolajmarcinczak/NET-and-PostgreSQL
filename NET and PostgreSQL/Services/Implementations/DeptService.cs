@@ -70,6 +70,17 @@ namespace NET_and_PostgreSQL.Services.Implementations
         public OperationResultDTO GetDepartmentTeamCount(string deptName)
         {
             Dept dept = GetDepartmentByName(deptName);
+
+            if (dept != null)
+            {
+                int teamCount = dept.Teams.Count;
+                if (teamCount > 0)
+                {
+                    return new OperationSuccessDTO<string> { Status = $"The department {deptName} has {teamCount} teams", Result = teamCount.ToString() };
+                }
+            }
+
+            return new OperationErrorDTO { Code = 404, Status = $"Department with name {deptName} not found" };
         }
     }
 }
