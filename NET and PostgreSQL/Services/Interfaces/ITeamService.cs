@@ -9,8 +9,8 @@ namespace NET_and_PostgreSQL.Services
     public interface ITeamService
     {
         OperationSuccessDTO<IList<TeamWithManagerDTO>> GetTeams();
-        OperationResultDTO GetTeamByName(string teamName);
-        OperationResultDTO GetTeamWithEmployees(string teamName);
-        OperationResultDTO GetTeamManager(string teamName);
+        Team GetTeamByName(string teamName);
+        Manager GetTeamManager(string teamName);
+        OperationSuccessDTO<IList<TeamWithEmpListDTO>> GetTeamWithEmployees(string teamName);
     }
 }
